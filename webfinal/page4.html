@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백석대에서 살아남기</title>
+</head>
+
+<body>
+    <div><span id="ques">1</span>번문제</div><br>
+    <li>
+        <img src='C:\Users\이민서\.vscode\sch.jpg' alt='본부동' width='150px'>
+    </li>
+    <p>이 건물의 이름은 무엇인가요?</p>
+    <div>
+        <input type="text" id="inn">
+    </div>
+    <button id="anws">정답입력</button>
+    </div>
+    <div style="color:blue;" id="right"></div>
+    <div style="color:red;" id="wrong"></div>
+    <div id="reason"></div><br>
+
+    <div><span id="ques2">2</span>번문제</div>
+    <p>백석대학교의 설립일은?</p>
+    <p>1994.12.16</p>
+    <p>1993.12.16</p>
+    <p>1993.12.17</p>
+    <p>1994.12.15</p>
+    <span id="word2"></span>
+    <input type="text" id="inner2"></div>
+    <button id="wjdekq2">정답입력</button>
+    <div style="color:blue;" id="right2"></div>
+    <div style="color:red;" id="wrong2"></div>
+    <div id="reason2"></div><br>
+
+    <div><span id="ques3">3</span>번문제</div>
+    <p>다음중 존재하지 않는 학부는?</p>
+    <p>1.ICT학부</p>
+    <p>2.감귤학부</p>
+    <p>3.첨단 IT 학부</p>
+    <p>4.사회복지학부</p>
+    <span id="word3"></span>
+    <input type="text" id="inner3"></div>
+    <button id="wjdekq3">정답입력</button>
+    <div style="color:blue;" id="right3"></div>
+    <div style="color:red;" id="wrong3"></div>
+    <br>
+
+    <div><span id="ques4">4</span>번문제</div>
+    <p>도서관에 관한 설명으로 적절하지 않은것은?</p>
+    <p>1.도서관 이용 앱 이름은 '클리커'이다</p>
+    <p>2.1층 열람실과 로비 운영시간은 9시부터 밤 12시까지이다</p>
+    <p>3.월요일 및 공휴일은 휴관이다</p>
+    <p>4.음악 자료실은 7층에 위치해있다</p>
+    <span id="word4"></span>
+    <input type="text" id="inner4"></div>
+    <button id="wjdekq4">정답입력</button>
+    </div>
+    <div style="color:blue;" id="right4"></div>
+    <div style="color:red;" id="wrong4"></div>
+    <div id="reason4"></div><br>
+
+    <div><span id="ques5">5</span>번문제</div>
+    <p>재학생 성적 우수 장학금 성적우수B 유형은 전공 학년별 상위 ()% 이내이다.</p>
+    <p>()에 들어갈 내용으로 옳은것은?</p>
+    <p>1.2</p>
+    <p>2.10</p>
+    <p>3.15</p>
+    <p>4.5</p>
+    <span id="word5"></span>
+    <input type="text" id="inner5"></div>
+    <button id="wjdekq5">정답입력</button>
+    </div>
+    <div style="color:blue;" id="right5"></div>
+    <div style="color:red;" id="wrong5"></div>
+    <div id="reason5"></div><br>
+    <button type="button" id='button'>다음</button>
+
+
+</body>
+<script>
+
+    let count = Number(localStorage.getItem('count'));
+    console.log(count)
+    const $button = document.querySelector('#anws');
+    const $input = document.querySelector('#inn');
+    const $result = document.querySelector('#right');
+    const $reul = document.querySelector('#wrong');
+    const $reason = document.querySelector('#reason');
+    let answer = "본부동"
+
+    const onInput = (event) => {
+        $input == answer
+    };
+    const onClickButton1 = () => {
+        const usewords = $input.value
+        if (answer == usewords) {
+            $result.textContent = '정답입니다'
+            count++
+            return;
+        } else {
+            $reul.textContent = '오답입니다'
+            $reason.textContent = '정답은 본부동으로, 성경책 모양을 하고 있다고 알려져 있습니다'
+            return;
+        };
+        $button.removeEventListener('click', onClickButton);
+    };
+    $button.addEventListener('click', onClickButton1);
+    $input.addEventListener('input', onInput);
+
+    /**2번 문제**/
+    const $button2 = document.querySelector('#wjdekq2');
+    const $input2 = document.querySelector('#inner2');
+    const $result2 = document.querySelector('#right2');
+    const $nores2 = document.querySelector('#wrong2');
+    const $reason2 = document.querySelector('#reason2');
+    const answer2 = "3"
+
+    const onInput2 = (event2) => {
+        $input2 == answer2
+    };
+    const onClickButton2 = () => {
+        const usewords2 = $input2.value
+        if (answer2 == usewords2) {
+            $result2.textContent = '정답입니다'
+            count++
+            return;
+        } else {
+            $nores2.textContent = '오답입니다'
+            $reason2.textContent = '백석대학교 설립일은 1993년 12월 17일 입니다'
+            return;
+        };
+        $button2.removeEventListener('click', onClickButton);
+    };
+    $button2.addEventListener('click', onClickButton2);
+    $input2.addEventListener('input', onInput2);
+
+    /**3번문제**/
+    const $button3 = document.querySelector('#wjdekq3');
+    const $input3 = document.querySelector('#inner3');
+    const $result3 = document.querySelector('#right3');
+    const $nores3 = document.querySelector('#wrong3');
+    const answer3 = "2"
+
+    const onInput3 = (ev) => {
+        $input3 == answer3
+    };
+    const onClickButton3 = () => {
+        const usewords3 = $input3.value
+        if (answer3 == usewords3) {
+            $result3.textContent = '정답입니다'
+            count++
+            return;
+        } else {
+            $nores3.textContent = '오답입니다'
+            return;
+        };
+        $button3.removeEventListener('click', onClickButton);
+    };
+    $button3.addEventListener('click', onClickButton3);
+    $input3.addEventListener('input', onInput3);
+
+    /**4번문제**/
+    const $button4 = document.querySelector('#wjdekq4');
+    const $input4 = document.querySelector('#inner4');
+    const $result4 = document.querySelector('#right4');
+    const $nores4 = document.querySelector('#wrong4');
+    const $reason4 = document.querySelector('#reason4');
+    const answer4 = "3"
+
+    const onInput4 = (e) => {
+        $input4 == answer4
+    };
+    const onClickButton4 = () => {
+        const usewords4 = $input4.value
+        if (answer4 == usewords4) {
+            $result4.textContent = '정답입니다'
+            count++
+            return;
+        } else {
+            $nores4.textContent = '오답입니다'
+            $reason4.textContent = '도서관의 휴관일은 공휴일 및 일요일 입니다'
+            return;
+        };
+        $button4.removeEventListener('click', onClickButton);
+    };
+    $button4.addEventListener('click', onClickButton4);
+    $input4.addEventListener('input', onInput4);
+
+    /**5번문제**/
+    const $button5 = document.querySelector('#wjdekq5');
+    const $input5 = document.querySelector('#inner5');
+    const $result5 = document.querySelector('#right5');
+    const $nores5 = document.querySelector('#wrong5');
+    const $reason5 = document.querySelector('#reason5');
+    const answer5 = "4"
+
+    const onInput5 = (e) => {
+        $input5 == answer5
+    };
+    const onClickButton5 = () => {
+        const usewords5 = $input5.value
+        if (answer5 == usewords5) {
+            $result5.textContent = '정답입니다'
+            count++
+            return;
+        } else {
+            $nores5.textContent = '오답입니다'
+            $reason5.textContent = 'B유형은 학년별 상위 5% 이내 까지 입니다'
+            return;
+        };
+        $button5.removeEventListener('click', onClickButton);
+    };
+    $button5.addEventListener('click', onClickButton5);
+    $input5.addEventListener('input', onInput5);
+
+
+    document.getElementById('button').addEventListener('click', function () {
+        localStorage.setItem('count', count);
+        window.location.href = 'page5.html';
+    });
+
+</script>
+
+</html>

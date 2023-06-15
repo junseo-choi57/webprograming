@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>백석대에서 살아남기</title>
+    <style>
+       img {
+            width: 220px;
+            height: 200px;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .explanation {
+            margin-top: 10px;
+            color: rgb(41, 41, 173);
+        }
+
+
+        body {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333333;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #555555;
+        }
+
+        button {
+            display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .explanation {
+            margin-top: 10px;
+            color: rgb(11, 11, 157);
+        }
+
+        .next-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            padding: 5px 10px;
+            width: 50px;
+            height: 50px;
+        }  
+    </style>
+</head>
+
+<body>
+    <h1>퀴즈 프로젝트</h1>
+
+    <h3>객관식 문제 1</h3>
+    <p>다음 중 백석대학교 교내에 있는 식당이 아닌 것은?</p>
+    <button onclick="checkAnswer('q1', 'a')">1. 밥뜨랑</button>
+    <button onclick="checkAnswer('q1', 'b')">2. 안골</button>
+    <button onclick="checkAnswer('q1', 'c')">3. 밀겨울</button>
+    <button id = 'no1' onclick="checkAnswer('q1', 'd')">4. 용우동</button>
+    <div id="q1-result" class="result"></div>
+    <div id="q1-explanation" class="explanation"></div>
+
+
+    <h3>객관식 문제 2</h3>
+    <p>다음 중 학교 공용 wifi의 이름은 무엇일까요??</p>
+    <button onclick="checkAnswer('q2', 'a')">1. Bu_wifi</button>
+    <button onclick="checkAnswer('q2', 'd')">2. Bu_wlan</button>
+    <button onclick="checkAnswer('q2', 'b')">3. Baksuk_wlan</button>
+    <button onclick="checkAnswer('q2', 'c')">4. iptime</button>
+    <div id="q2-result" class="result"></div>
+    <div id="q2-explanation" class="explanation"></div>
+
+
+    <h3>주관식 문제 1</h3>
+    <p>졸업할 때까지 채워야 하는 채플과 섬김의 학점은 몇 점인가?</p>
+    <input type="text" id="q3-answer">
+    <button onclick="subjectiveAnswer('q3', '4')">확인</button>
+    <div id="q3-result" class="result"></div>
+    <div id="q3-explanation" class="explanation"></div>
+
+
+    <h3>주관식 문제 2</h3>
+    <p>졸업 시 필요한 BU TOP 비교과 최소 누적 점수는 몇 점인가?</p>
+    <input type="text" id="q4-answer">
+    <button onclick="subjectiveAnswer('q4', '40')">확인</button>
+    <div id="q4-result" class="result"></div>
+    <div id="q4-explanation" class="explanation"></div>
+
+
+    <h3>이미지 선택 문제</h3>
+    <p>다음 중 백석대학교 경찰학부 과잠은 무엇인가요?</p>
+
+
+    <button onclick="checkAnswer('q5', 'a')">
+        <img src="경찰학부 과잠.jpg" alt="과잠 1"></button>
+    <button onclick="checkAnswer('q5', 'd')">
+
+        <img src="글로벌호텔비즈니스 과잠.jpg" alt="과잠 2"></button>
+    <button onclick="checkAnswer('q5', 'c')">
+
+        <img src="전북대 화학공학과 과잠.jpg" alt="과잠 3"></button>
+    <button onclick="checkAnswer('q5', 'b')">
+
+        <img src="첨단it 과잠.jpg" alt="과잠 4"></button>
+    <div id="q5-result" class="result"></div>
+    <div id="q5-explanation" class="explanation"></div>
+
+    <button type="button" class="next-button" id="nextpage">다음</button>
+
+
+    <script>
+        const $no1 = document.querySelector('#no1');
+
+        let count = Number(localStorage.getItem('count'));
+
+        //$check.removeEventListener('click',onClickButton);
+
+        function checkAnswer(questionId, selectedAnswer) {
+            let resultElement = document.getElementById(questionId + '-result');
+            let explanationElement = document.getElementById(questionId + '-explanation');
+
+            if (selectedAnswer === 'd') {
+                resultElement.style.color = 'blue';
+                resultElement.textContent = '정답입니다!';
+                explanationElement.textContent = '';
+                count++;
+                
+            } else {
+                resultElement.style.color = 'red';
+                resultElement.textContent = '틀렸습니다.';
+                explanationElement.textContent = '';
+
+                switch (questionId) {
+                    case 'q1':
+                        explanationElement.textContent = '밥뜨랑은 기숙사, 밀겨울은 복지동, 안골은 글로벌외식관, 용우동은 학교 밖 정문 쪽에 있습니다.  ';
+                        break;
+                    case 'q2':
+                        explanationElement.textContent = 'Bu_wlan의 아이디 : 30 + 본인학번,  비밀번호 : 종합정보시스템 비밀번호';
+                        break;
+                    case 'q3':
+                        explanationElement.textContent = '추가정보입니다.';
+                        break;
+                    case 'q4':
+                        explanationElement.textContent = '추가정보입니다.';
+                        break;
+                    case 'q5':
+                        explanationElement.textContent = '첫번째 사진 : 백석대 글로벌호텔비즈니스학과 , 두번째 사진 : 백석대 경찰학부 , 세번째 사진 : 전북대 화학공학과, 네번쨰 사진 : 백석대 첨단 IT';
+                        break;
+                    default:
+                        explanationElement.textContent = '';
+                        break;
+                }
+            }
+        }
+
+        function subjectiveAnswer(questionId, correctAnswer) {
+            let userAnswer = document.getElementById(questionId + '-answer').value;
+            let resultElement = document.getElementById(questionId + '-result');
+            let explanationElement = document.getElementById(questionId + '-explanation');
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                resultElement.style.color = 'blue';
+                resultElement.textContent = '정답입니다!';
+                explanationElement.textContent = '';
+
+                count++;
+
+            } else {
+                resultElement.style.color = 'red';
+                resultElement.textContent = '틀렸습니다.';
+                explanationElement.textContent = '';
+                switch (questionId) {
+                    case 'q1':
+                        explanationElement.textContent = '추가정보입니다.';
+                        break;
+                    case 'q2':
+                        explanationElement.textContent = '추가정보입니다.';
+                        break;
+                    case 'q3':
+                        explanationElement.textContent = '채플과 섬김은 한학기에 0.5학씩 8학기를 수강해서 총 4학점을 채워야한다.';
+                        break;
+                    case 'q4':
+                        explanationElement.textContent = '교과 점수 평균 70점이상, 비교과 누적 40점 이상을 채워야 졸업 요건에 해당이 된다.  비교과 점수는 비교과 프로그램을 신청하여 얻을 수 있다.';
+                        break;
+                    case 'q5':
+                        explanationElement.textContent = '추가정보입니다';
+                        break;
+                    default:
+                        explanationElement.textContent = '';
+                        break;
+                }
+            }
+        }
+        document.getElementById('nextpage').addEventListener('click', function () {
+            localStorage.setItem('count', count);
+            window.location.href = 'page6.html';
+        });
+    </script>
+</body>
+
+</html>

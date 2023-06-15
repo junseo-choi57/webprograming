@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #question {
+            width: 800px;
+            height: 680px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id=question>
+        <h4>6번. 백석대학교의 면적은?</h4>
+        <input type="text" id="no1">
+        <span id="result1"></span>
+        <div><span id="answer1">1. 1,155,826m2</span> 2. 2,275,334m2 3. 1,726,172m2 4.945,112,982m2</div>
+        <div id="ex1">해설:</div>
+
+        <h4>7번. 학교건물 내에 있는 편의점 중 틀린 것은?</h4>
+        <input type="text" id="no2">
+        <span id="result2"></span>
+        <div>1. 본부동 6층 2. 진리관 2층 3.지혜관 3층 <span id="answer2">4. 교수회관 1층</span></div>
+        <div id="ex2">해설:</div>
+
+        <h4>8번. 사진에 나온 백석대학교 마스코트 이름은?</h4>
+        <div style="position:absolute; width:150px;height:150px;top:260px;left:430px;">
+            <img src="뷰리.PNG" style="width:150px; height:150px">
+        </div>
+        <input type="text" id="no3">
+        <span id="result3"></span>
+        <div>1. 그림 2. 크림 3. 사랑 <span id="answer3">4. 뷰리</span></div>
+        <div id="ex3">해설:</div>
+
+        <h4>9번. 주어진 동아리 이름 중 백석대학교에 실존하는 동아리 이름은?</h4>
+        <input type="text" id="no4">
+        <span id="result4"></span>
+        <div>1. 하이텐션 <span id="answer4">2. 무뷔</span> 3. ATE 4. 깐따삐야</div>
+        <div id="ex4">해설:</div>
+
+        <h4>10번. 백석대학교의 휴게실이 있는 건물 중 틀린 것은?</h4>
+        <input type="text" id="no5">
+        <span id="result5"></span>
+        <div>1. 조형관 2. 진리관 <span id="answer5">3. 예술관</span> 4. 목양관</div>
+        <div id="ex5">해설:</div>
+
+
+    </div>
+    <div>
+        <button id="check">채점</button>
+        <input type="button" id="next" value="다음" disabled="disabled">
+    </div>
+    <script>
+
+        let count = Number(localStorage.getItem('count'));
+
+        let num1;
+        let num2;
+        let num3;
+        let num4;
+        let num5;
+
+        const $no1 = document.querySelector("#no1");
+        const $no2 = document.querySelector("#no2");
+        const $no3 = document.querySelector("#no3");
+        const $no4 = document.querySelector("#no4");
+        const $no5 = document.querySelector("#no5");
+
+        const $result1 = document.querySelector("#result1");
+        const $result2 = document.querySelector("#result2");
+        const $result3 = document.querySelector("#result3");
+        const $result4 = document.querySelector("#result4");
+        const $result5 = document.querySelector("#result5");
+
+        const $ex1 = document.querySelector("#ex1");
+        const $ex2 = document.querySelector("#ex2");
+        const $ex3 = document.querySelector("#ex3");
+        const $ex4 = document.querySelector("#ex4");
+        const $ex5 = document.querySelector("#ex5");
+
+        const $next = document.querySelector("#next");
+        const $check = document.querySelector("#check");
+
+        const onClickButton = () => {
+            if (!num1 || !num2 || !num3 || !num4 || !num5) {
+                alert("정답을 모두 입력하세요!");
+                return;
+            };
+            if (num1 == '1') {
+                $result1.textContent = "정답";
+                count += 1;
+            } if (num2 == '4') {
+                $result2.textContent = "정답";
+                count += 1;
+            } if (num3 == '4') {
+                $result3.textContent = "정답";
+                count += 1;
+            } if (num4 == '2') {
+                $result4.textContent = "정답";
+                count += 1;
+            } if (num5 == '3') {
+                $result5.textContent = "정답";
+                count += 1;
+            }
+
+            if (num1 != '1') {
+                $result1.textContent = "오답";
+            } if (num2 != '4') {
+                $result2.textContent = "오답";
+            } if (num3 != '4') {
+                $result3.textContent = "오답";
+            } if (num4 != '2') {
+                $result4.textContent = "오답";
+            } if (num5 != '3') {
+                $result5.textContent = "오답";
+            }
+            $ex1.textContent = "해설: 나무위키에서 1,155,826m2로 나옵니다.";
+            $ex2.textContent = "해설: 교수회관 1층에는 카페와 학식당이 있습니다.";
+            $ex3.textContent = "해설: 백석대학교 마스코트 이름은 뷰리로 독수리입니다.";
+            $ex4.textContent = "해설: 하이텐션은 배드민턴 동아리, ATE는 E-sports 동아리, 깐따삐야는 레크레이션 동아리입니다.";
+            $ex5.textContent = "해설: 예술관은 백석대학교에 없는 건물입니다.";
+
+            $next.disabled = false;
+
+            document.querySelector("#answer1").style.color = "red";
+            document.querySelector("#answer2").style.color = "red";
+            document.querySelector("#answer3").style.color = "red";
+            document.querySelector("#answer4").style.color = "red";
+            document.querySelector("#answer5").style.color = "red";
+
+            $check.removeEventListener('click', onClickButton);
+        };
+
+        $next.addEventListener("click", function () {
+            window.location.href = 'page4.html';
+            localStorage.setItem('count', count);
+        });
+
+        $check.addEventListener("click", onClickButton);
+        $no1.addEventListener("input", onInput1 = (event) => { num1 = event.target.value });
+        $no2.addEventListener("input", onInput1 = (event) => { num2 = event.target.value });
+        $no3.addEventListener("input", onInput1 = (event) => { num3 = event.target.value });
+        $no4.addEventListener("input", onInput1 = (event) => { num4 = event.target.value });
+        $no5.addEventListener("input", onInput1 = (event) => { num5 = event.target.value });
+
+    </script>
+</body>
+
+</html>

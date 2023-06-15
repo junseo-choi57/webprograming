@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #question {
+            width: 800px;
+            height: 850px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id=question>
+        <h4>1번. 백석대학교 근처에 없는 프랜차이즈 카페는 무엇인가?</h4>
+        <input type="text" id="no1">
+        <span id="result1"></span>
+        <div>1. 이디야 2. 빽다방 3. 메가커피 <span id="answer1">4. 할리스</span></div>
+        <div id="ex1">해설:</div>
+
+        <h4>2번. 수강신청시 유의사항으로 옳지 않은것은?</h4>
+        <input type="text" id="no2">
+        <span id="result2"></span>
+        <div>1. 동시 로그인이 불가능하다<br>
+            2. 신청 가능 학점은 12~19학점이다<br>
+            <span id="answer2">3. 시작 전 미리 로그인 가능하다</span><br>
+            4. 백석대 수강신청에는 담아두는 기능이 없다
+        </div>
+        <div id="ex2">해설:</div>
+
+        <h4>3번. 학교 앱 문제다음 사진의 앱의 용도는 무엇인가?</h4>
+        <div style="position:absolute; width:100px;height:100px;top:330px;left:450px;">
+            <img src="app2.PNG" style="width:100px; height:100px">
+        </div>
+        <input type="text" id="no3">
+        <span id="result3"></span>
+        <div>1. 수업공지, 연락 <span id="answer3">2. 도서관 이용</span> 3. 기숙사 외박신청 4. 출결</div>
+        <div id="ex3">해설:</div>
+
+        <h4>4번. 기숙사에 대한 설명으로 옳지 않은것은?</h4>
+        <input type="text" id="no4">
+        <span id="result4"></span>
+        <div>1. 기숙사 이름은 백석생활관이다<br>
+            2. 신입생 선발 우선대상은 원거리 거주하며 입학 성적이 높은자 이다.<br>
+            <span id="answer4">3. 입시 홈페이지에서 신청할 수 있다.</span><br>
+            4. 현관 폐쇄 시간은 12시부터 5시까지다
+        </div>
+        <div id="ex4">해설:</div>
+
+        <h4>5번. 통학버스 이용 시 탑승 위치로 옳은것은?</h4>
+        <input type="text" id="no5">
+        <span id="result5"></span>
+        <div>1. 안양-야탑역 4번출구 택시 승강장<br>
+            2. 수원-용인 시외버스터미널 공용 주차장 앞<br>
+            3. 교대역-4번출구 전방 150m 시계탑 앞<br>
+            <span id="answer5">4. 죽전- 경부고속도로 죽전정류장</span>
+        </div>
+
+
+
+    </div>
+    <div>
+        <button id="check">채점</button>
+        <input type="button" id="next" value="다음" disabled="disabled">
+    </div>
+    <script>
+
+        let count = 0;
+        let num1;
+        let num2;
+        let num3;
+        let num4;
+        let num5;
+
+        const $no1 = document.querySelector("#no1");
+        const $no2 = document.querySelector("#no2");
+        const $no3 = document.querySelector("#no3");
+        const $no4 = document.querySelector("#no4");
+        const $no5 = document.querySelector("#no5");
+
+        const $result1 = document.querySelector("#result1");
+        const $result2 = document.querySelector("#result2");
+        const $result3 = document.querySelector("#result3");
+        const $result4 = document.querySelector("#result4");
+        const $result5 = document.querySelector("#result5");
+
+        const $ex1 = document.querySelector("#ex1");
+        const $ex2 = document.querySelector("#ex2");
+        const $ex3 = document.querySelector("#ex3");
+        const $ex4 = document.querySelector("#ex4");
+
+        const $next = document.querySelector("#next");
+        const $check = document.querySelector("#check");
+
+        const onClickButton = () => {
+            if (!num1 || !num2 || !num3 || !num4 || !num5) {
+                alert("정답을 모두 입력하세요!");
+                return;
+            };
+            if (num1 == '4') {
+                $result1.textContent = "정답";
+                count += 1;
+            } if (num2 == '3') {
+                $result2.textContent = "정답";
+                count += 1;
+            } if (num3 == '2') {
+                $result3.textContent = "정답";
+                count += 1;
+            } if (num4 == '3') {
+                $result4.textContent = "정답";
+                count += 1;
+            } if (num5 == '4') {
+                $result5.textContent = "정답";
+                count += 1;
+            }
+
+            if (num1 != '4') {
+                $result1.textContent = "오답";
+            } if (num2 != '3') {
+                $result2.textContent = "오답";
+            } if (num3 != '2') {
+                $result3.textContent = "오답";
+            } if (num4 != '3') {
+                $result4.textContent = "오답";
+            } if (num5 != '4') {
+                $result5.textContent = "오답";
+            }
+            $ex1.textContent = "해설: 할리스는 터미널, 스타벅스는 상명대 근처에 있습니다.";
+            $ex2.textContent = "해설: 새로운 서버부터는 미리 로그인이 불가능합니다.";
+            $ex3.textContent = "해설: 수업공지, 연락: 백석톡, 기숙사 관리: 유니돔,  출결 : 백석대학교 스마트출결입니다.";
+            $ex4.textContent = "해설: 생활관 신청은 홈페이지가 따로 존재합니다. ";
+
+            $next.disabled = false;
+
+            document.querySelector("#answer1").style.color = "red";
+            document.querySelector("#answer2").style.color = "red";
+            document.querySelector("#answer3").style.color = "red";
+            document.querySelector("#answer4").style.color = "red";
+            document.querySelector("#answer5").style.color = "red";
+
+            $check.removeEventListener('click', onClickButton);
+        };
+
+        $next.addEventListener("click", function () {
+            window.location.href = 'page3.html';
+            localStorage.setItem('count', count);
+        });
+
+        $check.addEventListener("click", onClickButton);
+        $no1.addEventListener("input", onInput1 = (event) => { num1 = event.target.value });
+        $no2.addEventListener("input", onInput2 = (event) => { num2 = event.target.value });
+        $no3.addEventListener("input", onInput1 = (event) => { num3 = event.target.value });
+        $no4.addEventListener("input", onInput1 = (event) => { num4 = event.target.value });
+        $no5.addEventListener("input", onInput1 = (event) => { num5 = event.target.value });
+
+    </script>
+</body>
+
+</html>
